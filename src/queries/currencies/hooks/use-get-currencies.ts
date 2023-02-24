@@ -4,7 +4,7 @@ import { type ExchangeInfo } from '../types';
 
 export const useGetAvailableCurrencies = (
   options?: Omit<
-    UseQueryOptions<unknown, unknown, ExchangeInfo, string[]>,
+    UseQueryOptions<unknown, unknown, string[], string[]>,
     'queryFn' | 'queryKey'
   >
 ) =>
