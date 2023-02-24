@@ -1,5 +1,9 @@
+import { useGetAvailableCurrencies } from 'Queries/currencies';
+
 function App() {
-	return <div>Hello world!</div>;
+  const { data } = useGetAvailableCurrencies();
+  console.log(data);
+  return <div>Bonjour le monde</div>;
 }
 
 export default App;
