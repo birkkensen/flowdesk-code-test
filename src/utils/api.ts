@@ -5,11 +5,11 @@ const callApi = async <T>({
   method?: string;
   url: string;
 }): Promise<T | undefined> => {
-  try {
-    const response = await fetch(url, {
-      method,
-    });
+  const response = await fetch(url, {
+    method,
+  });
 
+  try {
     return await response.json();
   } catch (err) {
     console.error('API', err);
