@@ -6,5 +6,5 @@ export const getAllAvailableCurrencies = async () => {
     'https://data.binance.com/api/v3/exchangeInfo'
   );
 
-  return new Set(...[res?.symbols.map(symbol => symbol.baseAsset)]);
+  return res?.symbols.map(({ symbol }) => symbol);
 };
