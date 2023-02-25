@@ -3,10 +3,17 @@ import { CurrenyStats } from 'Components/currency-stats';
 import { useGetCurrencyTicker } from 'Queries/ticker';
 import { useState } from 'react';
 import { Form } from 'Components/form';
+import { useGetRecentTrades } from 'Queries/trades';
+import { Table } from 'Components/table';
 
 const App = () => {
   const [currencyPair, setCurrencyPair] = useState('');
+
   const { data, isInitialLoading, isError } = useGetCurrencyTicker({
+    symbol: currencyPair,
+    enabled: !(currencyPair.length === 0),
+  });
+  const { data: recentTrades } = useGetRecentTrades({
     symbol: currencyPair,
     enabled: !(currencyPair.length === 0),
   });
@@ -21,11 +28,14 @@ const App = () => {
       <section className="p-16">
         <h1 className="mb-8 text-4xl">Search for a currency pair</h1>
         <Form onSubmit={onSubmit} />
-        <CurrenyStats
-          data={data}
-          isLoading={isInitialLoading}
-          isError={isError}
-        />
+        <div className="flex w-full justify-between gap-4">
+          <Table recentTrades={recentTrades} />
+          <CurrenyStats
+            data={data}
+            isLoading={isInitialLoading}
+            isError={isError}
+          />
+        </div>
       </section>
     </div>
   );
