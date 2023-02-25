@@ -13,7 +13,7 @@ export const Form: React.FC<Props> = ({ onSubmit }) => {
     <form className="mb-8" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex items-end gap-2">
         <input
-          className="input-bordered input w-full max-w-xs"
+          className="input-bordered input w-full max-w-xs uppercase placeholder:capitalize"
           list="currency-pairs"
           placeholder="Search for a symbol pair"
           {...register('symbol')}
