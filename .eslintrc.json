@@ -10,7 +10,8 @@
     "standard-with-typescript",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "plugin:tailwindcss/recommended"
   ],
   "overrides": [],
   "parserOptions": {
@@ -33,6 +34,9 @@
   },
 
   "settings": {
+    "tailwindcss": {
+      "config": "tailwind.config.cjs"
+    },
     "import/resolver": {
       "alias": {
         "map": [
