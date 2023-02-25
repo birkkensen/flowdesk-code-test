@@ -17,7 +17,7 @@ export const CurrenyStats: React.FC<Props> = ({ data, isLoading, isError }) => {
   return (
     <>
       {data && (
-        <div className="flex w-full flex-col items-end justify-center gap-4">
+        <div className="flex flex-col gap-4">
           <div className="stats bg-neutral">
             <div className="stat">
               <div className="stat-title">{data?.symbol}</div>
