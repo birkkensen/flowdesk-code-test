@@ -27,6 +27,13 @@ const App = () => {
       <Navbar />
       <section className="p-16">
         <h1 className="mb-8 text-4xl">Search for a currency pair</h1>
+        <p className="my-4">
+          Search for a currency pair. Example
+          <span className="mx-1 rounded-md bg-neutral py-1 px-2 text-sm">
+            ETHBTC
+          </span>
+          This means ETH is the base asset and BTC is the quote asset
+        </p>
         <Form onSubmit={onSubmit} />
         <div className="flex w-full justify-between gap-4">
           <Table recentTrades={recentTrades} />
