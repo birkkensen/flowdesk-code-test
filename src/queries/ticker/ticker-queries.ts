@@ -10,7 +10,7 @@ export const getTickerPriceForSymbolPair = async (symbol: string) => {
   );
 
   return {
-    ticker,
-    ticker24hr,
+    ...ticker,
+    ...ticker24hr,
   };
 };

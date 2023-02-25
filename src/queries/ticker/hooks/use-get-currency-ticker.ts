@@ -6,14 +6,11 @@ interface HookProps {
   symbol: string;
 }
 
-type TData = {
-  ticker: TickerPrice;
-  ticker24hr: Ticker24Hr;
-};
+export type TickerStatsFull = TickerPrice & Ticker24Hr;
 
 export const useGetCurrencyTicker = (
   options: Omit<
-    UseQueryOptions<unknown, unknown, TData, string[]>,
+    UseQueryOptions<unknown, unknown, TickerStatsFull, string[]>,
     'queryFn' | 'queryKey'
   > &
     HookProps
