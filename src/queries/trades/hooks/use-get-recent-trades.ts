@@ -4,6 +4,7 @@ import { type Trade } from '../types';
 
 interface HookProps {
   symbol: string;
+  limit?: number;
 }
 
 export const useGetRecentTrades = (
@@ -15,6 +16,6 @@ export const useGetRecentTrades = (
 ) =>
   useQuery({
     queryKey: ['get-recent-trades', options.symbol],
-    queryFn: async () => await getRecentTrades(options.symbol),
+    queryFn: async () => await getRecentTrades(options.symbol, options?.limit),
     ...options,
   });
