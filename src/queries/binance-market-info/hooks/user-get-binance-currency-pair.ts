@@ -12,7 +12,7 @@ interface HookProps {
   limit?: number;
 }
 
-type TData = {
+export type CurrencyPairData = {
   recentTrades: Trade[];
   exchangeInfo: ExchangeInfo;
   ticker: TickerPrice & Ticker24Hr;
@@ -23,7 +23,7 @@ export const useGetBinanceCurrencyPairInfo = (
     UseQueryOptions<
       unknown,
       unknown,
-      TData,
+      CurrencyPairData,
       Array<string | number | undefined>
     >,
     'queryFn' | 'queryKey'
