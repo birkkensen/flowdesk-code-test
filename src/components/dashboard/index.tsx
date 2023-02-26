@@ -1,4 +1,5 @@
 import { CurrenyStats } from 'Components/currency-stats';
+import { ErrorMessage } from 'Components/error-message';
 import { Loader } from 'Components/loader';
 import { Table } from 'Components/table';
 import { type CurrencyPairData } from 'Queries/binance-market-info/hooks/user-get-binance-currency-pair';
@@ -14,7 +15,9 @@ export const Dashboard: React.FC<Props> = ({ data, isError, isLoading }) => {
     return <Loader />;
   }
   if (isError) {
-    return <div>Something went wrong, try refreshing the page.</div>;
+    return (
+      <ErrorMessage description="Something went wrong - try reloading the page or updating your search query" />
+    );
   }
   return (
     <div className="flex w-full flex-col gap-4 md:flex-row-reverse md:items-start">
