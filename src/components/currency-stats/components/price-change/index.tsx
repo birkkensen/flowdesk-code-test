@@ -10,5 +10,5 @@ export const PriceChange: React.FC<Props> = ({ percent = '' }) => {
   if (tickerPercent < 0) {
     return <span className="text-red-500">{`↘︎ ${percent}%`}</span>;
   }
-  return <span>{percent}%</span>;
+  return <span className="text-slate-400">{percent}%</span>;
 };
