@@ -1,18 +1,16 @@
 import { type Trade } from 'Queries/trades/types';
 import { useState } from 'react';
-import { SortableTableHeaderCell } from './components/sortable-table-header-cell';
-import { TableBodyCell } from './components/table-body-cell';
+import { TableBody } from './components/table-body';
+import { TableHead } from './components/table-head';
 import { compareValues } from './utils';
 
 interface Props {
-  recentTrades: Trade[] | undefined;
+  data: Trade[] | undefined;
 }
 
-export const Table: React.FC<Props> = ({ recentTrades }) => {
+export const Table: React.FC<Props> = ({ data }) => {
   const [sortKey, setSortKey] = useState<keyof Trade>('time');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-
-  const titles: Array<keyof Trade> = ['time', 'price', 'qty'];
 
   const handleSort = (key: keyof Trade) => {
     if (sortKey === key) {
@@ -22,31 +20,19 @@ export const Table: React.FC<Props> = ({ recentTrades }) => {
       setSortOrder('asc');
     }
   };
-  const sortedData = recentTrades?.sort(compareValues(sortKey, sortOrder));
+  const sortedData = data?.sort(compareValues(sortKey, sortOrder));
 
   return (
     <>
       {sortedData && (
         <div className="overflow-x-auto">
           <table className="table-compact table w-full">
-            <thead>
-              <tr>
-                {titles.map(title => (
-                  <SortableTableHeaderCell
-                    key={title}
-                    title={title}
-                    handleSort={handleSort}
-                    sortKey={sortKey}
-                    sortOrder={sortOrder}
-                  />
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {sortedData?.map(trade => (
-                <TableBodyCell key={trade.id} trade={trade} />
-              ))}
-            </tbody>
+            <TableHead
+              sortKey={sortKey}
+              sortOrder={sortOrder}
+              handleSort={handleSort}
+            />
+            <TableBody sortedData={sortedData} />
           </table>
         </div>
       )}
