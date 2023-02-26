@@ -12,7 +12,7 @@ interface Props {
 
 export const Dashboard: React.FC<Props> = ({ data, isError, isLoading }) => {
   if (isLoading) {
-    return <Loader />;
+    return <Loader message="Loading data..." />;
   }
   if (isError) {
     return (

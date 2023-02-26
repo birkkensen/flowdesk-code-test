@@ -12,6 +12,10 @@ interface Props {
   exchangeInfo: ExchangeInfo;
 }
 export const CurrenyStats: React.FC<Props> = ({ ticker, exchangeInfo }) => {
+  const parseAndroundNumber = (num: string) => {
+    const parsedNum = parseFloat(num);
+    return parsedNum > 1000 ? parsedNum.toFixed(3) : parsedNum.toFixed(5);
+  };
   return (
     <div className="flex w-full flex-col items-start gap-4 md:pt-10 xl:flex-row xl:justify-start">
       <BaseQuoteAsset data={exchangeInfo} />
@@ -19,9 +23,7 @@ export const CurrenyStats: React.FC<Props> = ({ ticker, exchangeInfo }) => {
         <StyledStat>
           <div className="text-slate-400">{ticker.symbol}</div>
           <div className="text-4xl font-extrabold text-slate-200">
-            {parseFloat(ticker.price) < 1000
-              ? parseFloat(ticker.price).toFixed(6)
-              : parseFloat(ticker.price).toFixed(2)}
+            {parseAndroundNumber(ticker.price)}
           </div>
           <div className="text-xs text-slate-400">
             {dayjs(new Date()).format('YYYY-MM-DD')}
@@ -30,7 +32,7 @@ export const CurrenyStats: React.FC<Props> = ({ ticker, exchangeInfo }) => {
         <StyledStat>
           <div className="text-slate-400">Price change 24h</div>
           <div className="text-4xl font-extrabold text-slate-200">
-            {parseFloat(ticker.priceChange).toFixed(6)}
+            {parseAndroundNumber(ticker.priceChange)}
           </div>
           <div className="text-xs">
             <PriceChange percent={ticker.priceChangePercent} />
@@ -39,13 +41,13 @@ export const CurrenyStats: React.FC<Props> = ({ ticker, exchangeInfo }) => {
         <StyledStat>
           <div className="text-slate-400">Price 24h High</div>
           <div className="text-4xl font-extrabold text-slate-200">
-            {parseFloat(ticker.highPrice).toFixed(6)}
+            {parseAndroundNumber(ticker.highPrice)}
           </div>
         </StyledStat>
         <StyledStat className="border-0">
           <div className="text-slate-400">Price 24h Low</div>
           <div className="text-4xl font-extrabold text-slate-200">
-            {parseFloat(ticker.lowPrice).toFixed(6)}
+            {parseAndroundNumber(ticker.lowPrice)}
           </div>
         </StyledStat>
       </StyledStats>
