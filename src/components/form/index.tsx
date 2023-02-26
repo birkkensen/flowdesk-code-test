@@ -1,5 +1,6 @@
 import { useGetAvailableCurrencies } from 'Queries/currencies';
 import { useForm } from 'react-hook-form';
+import { StyledInput } from './styled';
 
 interface Props {
   onSubmit: ({ symbol }: { symbol: string }) => void;
@@ -11,8 +12,7 @@ export const Form: React.FC<Props> = ({ onSubmit }) => {
   const sortedCurrencyPair = [...(data ?? [])].sort();
   return (
     <form className="mb-8 flex w-full gap-2" onSubmit={handleSubmit(onSubmit)}>
-      <input
-        className="w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm uppercase text-white placeholder:capitalize placeholder:text-gray-400"
+      <StyledInput
         list="currency-pairs"
         placeholder="Search for a symbol pair"
         {...register('symbol', {
