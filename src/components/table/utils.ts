@@ -1,19 +1,17 @@
-export const compareValues = <T>(
-  key: keyof T,
+import { type Trade } from 'Queries/trades/types';
+
+export const compareValues = (
+  key: keyof Trade,
   order: 'asc' | 'desc' = 'asc'
 ) => {
-  return (a: T, b: T) => {
-    const aValue = a[key];
-    const bValue = b[key];
-
-    if (order === 'asc') {
-      if (aValue < bValue) return -1;
-      if (aValue > bValue) return 1;
-    } else {
-      if (aValue < bValue) return 1;
-      if (aValue > bValue) return -1;
-    }
-
-    return 0;
+  return (a: Trade, b: Trade) => {
+    if (a[key] === null) return 1;
+    if (b[key] === null) return -1;
+    if (a[key] === null && b[key] === null) return 0;
+    return (
+      a[key].toString().localeCompare(b[key].toString(), 'en', {
+        numeric: true,
+      }) * (order === 'asc' ? 1 : -1)
+    );
   };
 };
