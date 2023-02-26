@@ -25,8 +25,8 @@ export const Table: React.FC<Props> = ({ data }) => {
   return (
     <>
       {sortedData && (
-        <div className="overflow-x-auto">
-          <table className="table-compact table w-full">
+        <div className="overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-left text-sm text-gray-400">
             <TableHead
               sortKey={sortKey}
               sortOrder={sortOrder}

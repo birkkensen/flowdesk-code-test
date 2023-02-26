@@ -8,12 +8,12 @@ export const TableBody: React.FC<Props> = ({ sortedData }) => {
   return (
     <tbody>
       {sortedData?.map(trade => (
-        <tr key={trade.id}>
-          <td className="bg-neutral">
+        <tr className="border-b border-gray-700 bg-gray-800" key={trade.id}>
+          <td className="px-6 py-4">
             {dayjs(trade?.time).format('YYYY-MM-DD HH:mm:ss')}
           </td>
-          <td className="bg-neutral">{trade?.price}</td>
-          <td className="bg-neutral">{trade?.qty}</td>
+          <td className="px-6 py-4">{trade?.price}</td>
+          <td className="px-6 py-4">{trade?.qty}</td>
         </tr>
       ))}
     </tbody>
