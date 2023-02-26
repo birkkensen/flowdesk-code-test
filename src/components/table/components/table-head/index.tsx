@@ -1,17 +1,11 @@
-import { type Trade } from 'Queries/trades/types';
+import { type Trade } from 'Queries/binance-market-info/types';
 import { sortableFields } from './utils';
 
 interface Props {
   handleSort: (key: keyof Trade) => void;
-  sortKey: keyof Trade;
-  sortOrder: 'asc' | 'desc';
 }
 
-export const TableHead: React.FC<Props> = ({
-  handleSort,
-  sortKey,
-  sortOrder,
-}) => {
+export const TableHead: React.FC<Props> = ({ handleSort }) => {
   return (
     <thead className="bg-gray-700 text-xs uppercase text-gray-400">
       <tr>
