@@ -13,7 +13,7 @@ interface Props {
 }
 export const CurrenyStats: React.FC<Props> = ({ ticker, exchangeInfo }) => {
   return (
-    <div className="flex w-full flex-col items-start gap-4 lg:pt-10 xl:flex-row xl:justify-start">
+    <div className="flex w-full flex-col items-start gap-4 md:pt-10 xl:flex-row xl:justify-start">
       <BaseQuoteAsset data={exchangeInfo} />
       <StyledStats>
         <StyledStat>
