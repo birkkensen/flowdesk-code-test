@@ -1,18 +1,13 @@
 import { Navbar } from 'Components/navbar';
-import { CurrenyStats } from 'Components/currency-stats';
-
 import { useState } from 'react';
 import { Form } from 'Components/form';
-
-import { Table } from 'Components/table';
-
-import { Loader } from 'Components/loader';
 import { useGetBinanceCurrencyPairInfo } from 'Queries/binance-market-info';
+import { Dashboard } from 'Components/dashboard';
 
 const App = () => {
   const [currencyPair, setCurrencyPair] = useState('');
 
-  const { data, isInitialLoading } = useGetBinanceCurrencyPairInfo({
+  const { data, isInitialLoading, isError } = useGetBinanceCurrencyPairInfo({
     symbol: currencyPair,
     enabled: !(currencyPair.length === 0),
   });
@@ -23,27 +18,16 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <section className="py-16 px-24">
-        <h1 className="mb-8 text-4xl">Search for a currency pair</h1>
-        <p className="my-4">
-          Search for a currency pair. Example
-          <span className="mx-1 rounded-md bg-neutral py-1 px-2 text-sm">
-            ETHBTC
-          </span>
-          This means ETH is the base asset and BTC is the quote asset
-        </p>
+      <section className="flex w-full flex-col items-start justify-center p-4 lg:px-20 lg:py-16">
+        <div className="mb-2 grid gap-2">
+          <h1 className="text-4xl text-slate-200">Search for a symbol pair</h1>
+          <p className="text-slate-300">
+            This could be for example <span className="font-bold">ETHBTC</span>{' '}
+            or <span className="font-bold">LRCETH</span>
+          </p>
+        </div>
         <Form onSubmit={onSubmit} />
-        {isInitialLoading ? (
-          <Loader />
-        ) : (
-          <div className="flex w-full items-start gap-4">
-            <Table data={data?.recentTrades} />
-            <CurrenyStats
-              ticker={data?.ticker}
-              exchangeInfo={data?.exchangeInfo}
-            />
-          </div>
-        )}
+        <Dashboard data={data} isLoading={isInitialLoading} isError={isError} />
       </section>
     </div>
   );
