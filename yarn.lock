@@ -872,6 +872,11 @@ cross-spawn@^7.0.2:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+crypto-symbol@^3.5.328:
+  version "3.5.328"
+  resolved "https://registry.yarnpkg.com/crypto-symbol/-/crypto-symbol-3.5.328.tgz#1909446502f2064f765c5076d33030778b54bc95"
+  integrity sha512-oHzvtP1jpxSMjYJwtYAvg2Adr9JJ+lxVDCgyi9VJxYE+Q98o/VJEi4oYqbbP+A03dyxIZQUBpYLpCRe19JzPaw==
+
 cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
