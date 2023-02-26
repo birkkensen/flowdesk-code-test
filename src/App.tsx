@@ -6,7 +6,6 @@ import { Form } from 'Components/form';
 
 import { Table } from 'Components/table';
 
-import { BaseQuoteAsset } from 'Components/currency-stats/components/base-quote-asset';
 import { Loader } from 'Components/loader';
 import { useGetBinanceCurrencyPairInfo } from 'Queries/binance-market-info';
 
@@ -38,9 +37,11 @@ const App = () => {
           <Loader />
         ) : (
           <div className="flex w-full items-start gap-4">
-            <BaseQuoteAsset data={data?.exchangeInfo} />
             <Table data={data?.recentTrades} />
-            <CurrenyStats data={data?.ticker} />
+            <CurrenyStats
+              ticker={data?.ticker}
+              exchangeInfo={data?.exchangeInfo}
+            />
           </div>
         )}
       </section>

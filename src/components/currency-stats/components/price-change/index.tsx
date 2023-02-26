@@ -1,20 +1,14 @@
-import { type TickerStatsFull } from 'Queries/ticker/hooks/use-get-currency-ticker';
-
 interface Props {
-  data: TickerStatsFull;
+  percent?: string;
 }
 
-export const PriceChange: React.FC<Props> = ({ data }) => {
-  const tickerPercent = parseFloat(data.priceChangePercent);
+export const PriceChange: React.FC<Props> = ({ percent = '' }) => {
+  const tickerPercent = parseFloat(percent);
   if (tickerPercent > 0) {
-    return (
-      <span className="text-green-500">{`↗︎ ${data.priceChangePercent}%`}</span>
-    );
+    return <span className="text-green-500">{`↗︎ ${percent}%`}</span>;
   }
   if (tickerPercent < 0) {
-    return (
-      <span className="text-red-500">{`↘︎ ${data.priceChangePercent}%`}</span>
-    );
+    return <span className="text-red-500">{`↘︎ ${percent}%`}</span>;
   }
-  return <span>{`${data.priceChangePercent}%`}</span>;
+  return <span>{percent}%</span>;
 };
