@@ -11,13 +11,15 @@ interface Props {
 }
 export const CurrenyStats: React.FC<Props> = ({ ticker, exchangeInfo }) => {
   return (
-    <div className="flex w-full flex-col items-start gap-4 xl:flex-row xl:justify-start">
+    <div className="flex w-full flex-col items-start gap-4 xl:flex-row xl:justify-start xl:pt-10">
       <BaseQuoteAsset data={exchangeInfo} />
       <StyledStats>
         <StyledStat>
           <div className="text-slate-400">{ticker.symbol}</div>
           <div className="text-4xl font-extrabold text-slate-200">
-            {parseFloat(ticker.price).toFixed(6)}
+            {parseFloat(ticker.price) < 1000
+              ? parseFloat(ticker.price).toFixed(6)
+              : parseFloat(ticker.price).toFixed(2)}
           </div>
           <div className="text-xs text-slate-400">
             {dayjs(new Date()).format('YYYY-MM-DD')}
