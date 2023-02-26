@@ -14,7 +14,7 @@ interface Props {
 export const CurrenyStats: React.FC<Props> = ({ ticker, exchangeInfo }) => {
   const parseAndroundNumber = (num: string) => {
     const parsedNum = parseFloat(num);
-    return parsedNum > 1000 ? parsedNum.toFixed(3) : parsedNum.toFixed(5);
+    return parsedNum > 1000 ? parsedNum.toFixed(3) : parsedNum.toFixed(6);
   };
   return (
     <div className="flex w-full flex-col items-start gap-4 md:pt-10 xl:flex-row xl:justify-start">

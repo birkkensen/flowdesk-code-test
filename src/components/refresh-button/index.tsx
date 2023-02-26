@@ -20,9 +20,11 @@ export const RefreshButton: React.FC<Props> = ({
 }) => {
   return (
     <button
-      disabled={!isSuccess}
-      className={`w-28 rounded-lg bg-gray-900 p-2.5 text-white transition active:scale-95 ${
-        !isSuccess || isFetching ? 'bg-slate-800 text-gray-700' : ''
+      disabled={!isSuccess || isFetching}
+      className={`w-28 rounded-lg bg-gray-900 p-2.5 text-white transition  ${
+        !isSuccess || isFetching
+          ? 'bg-slate-800 text-gray-700'
+          : 'active:scale-95'
       }`}
       onClick={async () => await refetch()}
       type="button"
