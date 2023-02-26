@@ -16,16 +16,22 @@ export const BaseQuoteAsset: React.FC<Props> = ({ data }) => {
           {data?.symbols[0].baseAsset}
         </div>
         <div className="text-xs text-slate-400">
-          {nameLookup(data.symbols[0].baseAsset)}
+          {nameLookup(data.symbols[0].baseAsset) ?? 'Unknown'}
         </div>
       </StyledStat>
-      <StyledStat className="border-0">
+      <StyledStat>
         <div className="text-slate-400">Quote asset</div>
         <div className="text-4xl font-extrabold text-slate-200">
           {data?.symbols[0].quoteAsset}
         </div>
         <div className="text-xs text-slate-400">
-          {nameLookup(data.symbols[0].quoteAsset)}
+          {nameLookup(data.symbols[0].quoteAsset) ?? 'Unknown'}
+        </div>
+      </StyledStat>
+      <StyledStat className="border-0">
+        <div className="text-slate-400">Status</div>
+        <div className="text-4xl font-extrabold text-slate-200">
+          {data?.symbols[0].status}
         </div>
       </StyledStat>
     </StyledStats>
