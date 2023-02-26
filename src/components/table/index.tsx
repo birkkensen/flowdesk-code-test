@@ -10,7 +10,7 @@ interface Props {
 
 export const Table: React.FC<Props> = ({ data }) => {
   const [sortKey, setSortKey] = useState<keyof Trade>('time');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
   const handleSort = (key: keyof Trade) => {
     if (sortKey === key) {
@@ -23,18 +23,20 @@ export const Table: React.FC<Props> = ({ data }) => {
   const sortedData = data?.sort(compareValues(sortKey, sortOrder));
 
   return (
-    <div className="w-full overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-left text-sm text-gray-400">
-        <caption className="my-2 text-left text-lg font-extrabold">
-          Recent trades
-        </caption>
-        <TableHead
-          sortKey={sortKey}
-          sortOrder={sortOrder}
-          handleSort={handleSort}
-        />
-        <TableBody sortedData={sortedData} />
-      </table>
+    <div className="w-full">
+      <p className="my-2 text-left text-lg font-extrabold text-slate-200">
+        Recent trades
+      </p>
+      <div className="w-full overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-left text-sm text-gray-400">
+          <TableHead
+            sortKey={sortKey}
+            sortOrder={sortOrder}
+            handleSort={handleSort}
+          />
+          <TableBody sortedData={sortedData} />
+        </table>
+      </div>
     </div>
   );
 };

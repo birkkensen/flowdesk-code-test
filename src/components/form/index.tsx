@@ -27,7 +27,7 @@ export const Form: React.FC<Props> = ({ onSubmit }) => {
           className="rounded-lg bg-gray-900 p-2.5 text-white transition active:scale-95"
           type="submit"
         >
-          Submit
+          Search
         </button>
       </div>
     </form>
