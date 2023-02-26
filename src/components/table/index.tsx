@@ -23,19 +23,18 @@ export const Table: React.FC<Props> = ({ data }) => {
   const sortedData = data?.sort(compareValues(sortKey, sortOrder));
 
   return (
-    <>
-      {sortedData && (
-        <div className="overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-left text-sm text-gray-400">
-            <TableHead
-              sortKey={sortKey}
-              sortOrder={sortOrder}
-              handleSort={handleSort}
-            />
-            <TableBody sortedData={sortedData} />
-          </table>
-        </div>
-      )}
-    </>
+    <div className="w-full overflow-x-auto shadow-md sm:rounded-lg">
+      <table className="w-full text-left text-sm text-gray-400">
+        <caption className="my-2 text-left text-lg font-extrabold">
+          Recent trades
+        </caption>
+        <TableHead
+          sortKey={sortKey}
+          sortOrder={sortOrder}
+          handleSort={handleSort}
+        />
+        <TableBody sortedData={sortedData} />
+      </table>
+    </div>
   );
 };

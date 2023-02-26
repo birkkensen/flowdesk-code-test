@@ -10,10 +10,10 @@ export const Form: React.FC<Props> = ({ onSubmit }) => {
   const { data } = useGetAvailableCurrencies();
   const sortedCurrencyPair = [...(data ?? [])].sort();
   return (
-    <form className="mb-8" onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex items-end gap-2">
+    <form className="mb-8 w-full" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex w-full gap-2">
         <input
-          className="w-full max-w-xs rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm uppercase text-white placeholder:capitalize placeholder:text-gray-400"
+          className="w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm uppercase text-white placeholder:capitalize placeholder:text-gray-400"
           list="currency-pairs"
           placeholder="Search for a symbol pair"
           {...register('symbol')}
