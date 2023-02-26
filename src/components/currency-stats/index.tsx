@@ -1,7 +1,9 @@
 import { BaseQuoteAsset } from 'Components/currency-stats/components/base-quote-asset';
 import dayjs from 'dayjs';
-import { type ExchangeInfo } from 'Queries/binance-market-info/types';
-import { type TickerStatsFull } from 'Queries/ticker/hooks/use-get-currency-ticker';
+import {
+  type ExchangeInfo,
+  type TickerStatsFull,
+} from 'Queries/binance-market-info/types';
 import { PriceChange } from './components/price-change';
 import { StyledStats, StyledStat } from './styled';
 
@@ -11,7 +13,7 @@ interface Props {
 }
 export const CurrenyStats: React.FC<Props> = ({ ticker, exchangeInfo }) => {
   return (
-    <div className="flex w-full flex-col items-start gap-4 xl:flex-row xl:justify-start xl:pt-10">
+    <div className="flex w-full flex-col items-start gap-4 lg:pt-10 xl:flex-row xl:justify-start">
       <BaseQuoteAsset data={exchangeInfo} />
       <StyledStats>
         <StyledStat>
