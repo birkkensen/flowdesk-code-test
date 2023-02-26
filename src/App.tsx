@@ -1,19 +1,19 @@
 import { Navbar } from 'Components/navbar';
 import { CurrenyStats } from 'Components/currency-stats';
-import { useGetCurrencyTicker } from 'Queries/ticker';
+
 import { useState } from 'react';
 import { Form } from 'Components/form';
-import { useGetRecentTrades } from 'Queries/trades';
+
 import { Table } from 'Components/table';
+
+import { BaseQuoteAsset } from 'Components/currency-stats/components/base-quote-asset';
+import { Loader } from 'Components/loader';
+import { useGetBinanceCurrencyPairInfo } from 'Queries/binance-market-info';
 
 const App = () => {
   const [currencyPair, setCurrencyPair] = useState('');
 
-  const { data, isInitialLoading, isError } = useGetCurrencyTicker({
-    symbol: currencyPair,
-    enabled: !(currencyPair.length === 0),
-  });
-  const { data: recentTrades } = useGetRecentTrades({
+  const { data, isInitialLoading } = useGetBinanceCurrencyPairInfo({
     symbol: currencyPair,
     enabled: !(currencyPair.length === 0),
   });
@@ -21,11 +21,10 @@ const App = () => {
   const onSubmit = ({ symbol }: { symbol: string }) => {
     setCurrencyPair(symbol);
   };
-
   return (
     <div>
       <Navbar />
-      <section className="p-16">
+      <section className="py-16 px-24">
         <h1 className="mb-8 text-4xl">Search for a currency pair</h1>
         <p className="my-4">
           Search for a currency pair. Example
@@ -35,14 +34,15 @@ const App = () => {
           This means ETH is the base asset and BTC is the quote asset
         </p>
         <Form onSubmit={onSubmit} />
-        <div className="flex w-full justify-between gap-4">
-          <Table recentTrades={recentTrades} />
-          <CurrenyStats
-            data={data}
-            isLoading={isInitialLoading}
-            isError={isError}
-          />
-        </div>
+        {isInitialLoading ? (
+          <Loader />
+        ) : (
+          <div className="flex w-full items-start gap-4">
+            <BaseQuoteAsset data={data?.exchangeInfo} />
+            <Table data={data?.recentTrades} />
+            <CurrenyStats data={data?.ticker} />
+          </div>
+        )}
       </section>
     </div>
   );
