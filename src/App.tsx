@@ -11,6 +11,7 @@ const App = () => {
   const { data, isInitialLoading, isError, refetch, isSuccess, isRefetching } =
     useGetBinanceCurrencyPairInfo({
       symbol: currencyPair,
+      limit: 20,
       enabled: !(currencyPair.length === 0),
     });
 
@@ -25,8 +26,11 @@ const App = () => {
         <div className="mb-2 grid gap-2">
           <h1 className="text-4xl text-slate-200">Search for a symbol pair</h1>
           <p className="text-slate-300">
-            This could be for example <span className="font-bold">ETHBTC</span>{' '}
-            or <span className="font-bold">LRCETH</span>
+            Note! This could be for example{' '}
+            <span className="font-bold">ETHBTC</span> or{' '}
+            <span className="font-bold">LRCETH</span>. The query will not work
+            for single currencies like <span className="font-bold">ETH</span> or{' '}
+            <span className="font-bold">BTC</span>
           </p>
         </div>
         <div className="flex w-full items-start gap-2">
