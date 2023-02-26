@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { type Trade } from 'Queries/trades/types';
+import { type Trade } from 'Queries/binance-market-info/types';
 
 interface Props {
   sortedData: Trade[] | undefined;
