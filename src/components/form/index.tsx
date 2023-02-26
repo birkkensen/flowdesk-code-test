@@ -9,7 +9,6 @@ interface Props {
 export const Form: React.FC<Props> = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm<{ symbol: string }>();
   const { data } = useGetAvailableCurrencies();
-  const sortedCurrencyPair = [...(data ?? [])].sort();
   return (
     <form className="mb-8 flex w-full gap-2" onSubmit={handleSubmit(onSubmit)}>
       <StyledInput
@@ -20,7 +19,7 @@ export const Form: React.FC<Props> = ({ onSubmit }) => {
         })}
       />
       <datalist id="currency-pairs">
-        {sortedCurrencyPair?.map(symbol => (
+        {data?.map(symbol => (
           <option key={symbol} value={symbol} />
         ))}
       </datalist>
