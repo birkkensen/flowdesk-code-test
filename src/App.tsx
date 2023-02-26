@@ -3,18 +3,21 @@ import { useState } from 'react';
 import { Form } from 'Components/form';
 import { useGetBinanceCurrencyPairInfo } from 'Queries/binance-market-info';
 import { Dashboard } from 'Components/dashboard';
+import { RefreshButton } from 'Components/refresh-button';
 
 const App = () => {
   const [currencyPair, setCurrencyPair] = useState('');
 
-  const { data, isInitialLoading, isError } = useGetBinanceCurrencyPairInfo({
-    symbol: currencyPair,
-    enabled: !(currencyPair.length === 0),
-  });
+  const { data, isInitialLoading, isError, refetch, isSuccess, isRefetching } =
+    useGetBinanceCurrencyPairInfo({
+      symbol: currencyPair,
+      enabled: !(currencyPair.length === 0),
+    });
 
   const onSubmit = ({ symbol }: { symbol: string }) => {
     setCurrencyPair(symbol);
   };
+
   return (
     <div>
       <Navbar />
@@ -26,7 +29,14 @@ const App = () => {
             or <span className="font-bold">LRCETH</span>
           </p>
         </div>
-        <Form onSubmit={onSubmit} />
+        <div className="flex w-full items-start gap-2">
+          <Form onSubmit={onSubmit} />
+          <RefreshButton
+            isFetching={isRefetching}
+            isSuccess={isSuccess}
+            refetch={refetch}
+          />
+        </div>
         <Dashboard data={data} isLoading={isInitialLoading} isError={isError} />
       </section>
     </div>
