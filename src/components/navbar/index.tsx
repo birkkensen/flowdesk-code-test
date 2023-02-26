@@ -1,7 +1,7 @@
 export const Navbar = () => {
   return (
-    <nav className="m-2 flex rounded-lg bg-neutral p-2">
-      <a className="btn-ghost btn text-xl normal-case">flowdesk-code-test</a>
+    <nav className="m-2 flex rounded-lg bg-slate-600 p-2">
+      <h1 className="text-2xl">flowdesk-code-test</h1>
     </nav>
   );
 };

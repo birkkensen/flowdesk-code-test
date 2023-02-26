@@ -13,7 +13,7 @@ export const Form: React.FC<Props> = ({ onSubmit }) => {
     <form className="mb-8" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex items-end gap-2">
         <input
-          className="input-bordered input w-full max-w-xs uppercase placeholder:capitalize"
+          className="w-full max-w-xs rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm uppercase text-white placeholder:capitalize placeholder:text-gray-400"
           list="currency-pairs"
           placeholder="Search for a symbol pair"
           {...register('symbol')}
@@ -23,7 +23,10 @@ export const Form: React.FC<Props> = ({ onSubmit }) => {
             <option key={symbol} value={symbol} />
           ))}
         </datalist>
-        <button className="btn" type="submit">
+        <button
+          className="rounded-lg bg-gray-900 p-2.5 text-white transition active:scale-95"
+          type="submit"
+        >
           Submit
         </button>
       </div>
