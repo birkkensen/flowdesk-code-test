@@ -1,11 +1,11 @@
-import { type Trade } from 'Queries/trades/types';
+import { type Trade } from 'Queries/binance-market-info/types';
 import { useState } from 'react';
 import { TableBody } from './components/table-body';
 import { TableHead } from './components/table-head';
 import { compareValues } from './utils';
 
 interface Props {
-  data: Trade[] | undefined;
+  data: Trade[];
 }
 
 export const Table: React.FC<Props> = ({ data }) => {
@@ -20,7 +20,7 @@ export const Table: React.FC<Props> = ({ data }) => {
       setSortOrder('asc');
     }
   };
-  const sortedData = data?.sort(compareValues(sortKey, sortOrder));
+  const sortedData = data.sort(compareValues(sortKey, sortOrder));
 
   return (
     <div className="w-full">
@@ -29,11 +29,7 @@ export const Table: React.FC<Props> = ({ data }) => {
       </p>
       <div className="w-full overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-left text-sm text-gray-400">
-          <TableHead
-            sortKey={sortKey}
-            sortOrder={sortOrder}
-            handleSort={handleSort}
-          />
+          <TableHead handleSort={handleSort} />
           <TableBody sortedData={sortedData} />
         </table>
       </div>

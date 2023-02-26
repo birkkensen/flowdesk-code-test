@@ -1,4 +1,4 @@
-import { type Trade } from 'Queries/trades/types';
+import { type Trade } from 'Queries/binance-market-info/types';
 
 type SortableField = {
   title: string;

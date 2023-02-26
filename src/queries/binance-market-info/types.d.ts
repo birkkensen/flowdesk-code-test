@@ -57,6 +57,8 @@ export type Ticker24Hr = {
   count: number;
 };
 
+export type TickerStatsFull = TickerPrice & Ticker24Hr;
+
 export type Trade = {
   id: number;
   price: string;
